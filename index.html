@@ -10,11 +10,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, #2c3e50 0%, #4a5568 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -26,29 +26,31 @@
         .container {
             width: 100%;
             max-width: 900px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
+            background: rgba(249, 250, 251, 0.95);
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
             animation: fadeIn 0.8s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         header {
-            background: linear-gradient(to right, #6a11cb, #2575fc);
+            background: linear-gradient(to right, #4a5568, #2d3748);
             color: white;
-            text-align: center;
             padding: 25px;
-            position: relative;
+            text-align: center;
+            border-bottom: 1px solid #718096;
         }
 
         header h1 {
             font-size: 28px;
             margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         header p {
@@ -56,140 +58,231 @@
             opacity: 0.9;
         }
 
-        .payment-container {
+        .payment-options {
             display: flex;
             flex-wrap: wrap;
-            padding: 30px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .payment-tab {
+            display: flex;
+            border-bottom: 2px solid #e2e8f0;
+            width: 100%;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .tab-button {
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            color: #718096;
+            transition: all 0.3s ease;
+            position: relative;
+            outline: none;
+        }
+
+        .tab-button.active {
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #4a5568;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .payment-content {
+            width: 100%;
+            display: none;
+            padding: 20px;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .payment-content.active {
+            display: block;
+        }
+
+        .payment-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
 
         .payment-method {
-            flex: 1;
-            min-width: 250px;
-            padding: 20px;
-            margin: 10px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .payment-method:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .method-header {
             display: flex;
             align-items: center;
             margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #f1f1f1;
         }
 
-        .method-header i {
-            font-size: 28px;
+        .payment-icon {
+            width: 60px;
+            height: 60px;
             margin-right: 15px;
-            color: #6a11cb;
+            object-fit: contain;
+            border-radius: 10px;
+            background: #4a5568;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .method-header h2 {
+        .payment-details h3 {
             font-size: 20px;
-            color: #333;
-        }
-
-        .payment-details {
-            margin-top: 15px;
-        }
-
-        .detail-item {
-            margin-bottom: 15px;
-        }
-
-        .detail-item label {
-            display: block;
-            font-size: 14px;
-            color: #777;
             margin-bottom: 5px;
+            color: #2d3748;
         }
 
-        .detail-item p {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-            word-break: break-all;
+        .payment-details p {
+            color: #4a5568;
+            margin-bottom: 3px;
+            font-size: 15px;
+        }
+
+        .payment-info {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .payment-info p {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .copy-btn {
-            background: #6a11cb;
+            background: #4a5568;
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 14px;
-            margin-top: 5px;
+            font-size: 13px;
             transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .copy-btn:hover {
-            background: #2575fc;
+            background: #2d3748;
         }
 
         .qris-container {
             text-align: center;
-            padding: 15px 0;
+            padding: 15px;
         }
 
-        .qris-placeholder {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto;
-            background: #f5f5f5;
+        .qris-image {
+            max-width: 250px;
             border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #777;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 0 auto 15px;
+            display: block;
+            border: 1px solid #e2e8f0;
         }
 
-        .qris-placeholder i {
-            font-size: 50px;
-            margin-bottom: 15px;
-            color: #6a11cb;
-        }
-
-        .instruction {
+        .instructions {
             margin-top: 20px;
-            font-size: 14px;
-            color: #777;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .instructions h4 {
+            margin-bottom: 10px;
+            color: #2d3748;
+            font-size: 18px;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+            color: #4a5568;
+        }
+
+        .proof-link {
+            display: block;
             text-align: center;
-        }
-
-        .instruction a {
-            color: #2575fc;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: #4a5568;
+            color: white;
             text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background 0.3s;
         }
 
-        .instruction a:hover {
-            text-decoration: underline;
+        .proof-link:hover {
+            background: #2d3748;
         }
 
         footer {
             text-align: center;
             padding: 20px;
-            background: #f9f9f9;
-            color: #777;
+            color: #718096;
             font-size: 14px;
+            border-top: 1px solid #e2e8f0;
+            background: #f7fafc;
         }
 
         @media (max-width: 768px) {
-            .payment-container {
+            .payment-tab {
                 flex-direction: column;
             }
             
+            .tab-button {
+                width: 100%;
+                text-align: center;
+            }
+            
             .payment-method {
-                min-width: 100%;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .payment-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .payment-info p {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
             }
         }
     </style>
@@ -198,86 +291,141 @@
     <div class="container">
         <header>
             <h1>Payment Gateway</h1>
-            <p>Silakan pilih metode pembayaran yang Anda inginkan</p>
+            <p>Pilih metode pembayaran yang Anda inginkan</p>
         </header>
         
-        <div class="payment-container">
-            <div class="payment-method">
-                <div class="method-header">
-                    <i class="fab fa-cc-dana"></i>
-                    <h2>DANA</h2>
+        <div class="payment-options">
+            <div class="payment-tab">
+                <button class="tab-button active" onclick="showPayment(0)">DANA</button>
+                <button class="tab-button" onclick="showPayment(1)">GOPAY</button>
+                <button class="tab-button" onclick="showPayment(2)">QRIS</button>
+            </div>
+            
+            <!-- DANA Payment -->
+            <div class="payment-content active">
+                <div class="payment-card">
+                    <div class="payment-method">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMDA5NEM4IiBkPSJNMTY1LjkgMTA1LjVjLTQuNS00LjUtMTAuNi03LTE3LTdIMzJjLTE3LjcgMC0zMiAxNC4zLTMyIDMydjM1MmMwIDE3LjcgMTQuMyAzMiAzMiAzMmg0NDhjMTcuNyAwIDMyLTE0LjMgMzItMzJWMjQ4YzAtMTMuMy0xMC43LTI0LTI0LTI0SDI4OGMtMTMuMyAwLTI0LTEwLjctMjQtMjR2LTY3LjljMC02LjQtMi41LTEyLjUtNy0xN3ptMTM4IDExOC41YzAtNjUuOSA1MC41LTExOS45IDExMy45LTExOS45IDYzLjMgMCAxMTMuOSA1NCAxMTMuOSAxMTkuOXMtNTAuNSAxMTkuOS0xMTMuOSAxMTkuOWMtNjMuNCAwLTExMy45LTU0LTExMy45LTExOS45eiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0yMDcuOSAyMDEuNGMtNC4yLTUuMS0xMC45LTguMy0xOC44LTguMy0xMy4zIDAtMjMuOSAxMC43LTIzLjkgMjRzMTAuNiAyNCAyMy45IDI0YzcuOSAwIDE0LjYtMy4yIDE4LjgtOC4zaC0yMy4ydi0zMS40aDIzLjJ6bTQ3LjUgMzEuNGMwIDEzLjMgMTAuNiAyNCAyMy45IDI0czIzLjktMTAuNyAyMy45LTI0LTI0LTI0LTIzLjktMjRjLTEzLjIgMC0yMy45IDEwLjctMjMuOSAyNHptLTQ3LjUtNDcuM2MwLTEzLjMtMTAuNi0yNC0yMy45LTI0cy0yMy45IDEwLjctMjMuOSAyNCAxMC42IDI0IDIzLjkgMjRjNy45IDAgMTQuNi0zLjIgMTguOC04LjNoMjMuMnYtMTUuN2gtMjMuMnoiLz48L3N2Zz4=" alt="DANA" class="payment-icon">
+                        <div class="payment-details">
+                            <h3>Transfer DANA</h3>
+                            <p>No. Telepon: <strong>085693449956</strong></p>
+                            <p>Atas Nama: <strong>HANDAYANI</strong></p>
+                        </div>
+                    </div>
+                    <div class="payment-info">
+                        <p>
+                            <span>085693449956</span>
+                            <button class="copy-btn" onclick="copyToClipboard('085693449956')">
+                                <i class="fas fa-copy"></i> Salin
+                            </button>
+                        </p>
+                    </div>
                 </div>
-                <div class="payment-details">
-                    <div class="detail-item">
-                        <label>Nomor DANA</label>
-                        <p id="dana-number">085693449956</p>
-                        <button class="copy-btn" onclick="copyToClipboard('dana-number')">Salin Nomor</button>
-                    </div>
-                    <div class="detail-item">
-                        <label>Atas Nama</label>
-                        <p>HANDAYANI</p>
-                    </div>
+                <div class="instructions">
+                    <h4>Cara Pembayaran:</h4>
+                    <ol>
+                        <li>Buka aplikasi DANA di ponsel Anda</li>
+                        <li>Pilih menu "Kirim"</li>
+                        <li>Masukkan nomor 085693449956</li>
+                        <li>Masukkan jumlah yang ingin ditransfer</li>
+                        <li>Konfirmasi pembayaran</li>
+                    </ol>
                 </div>
             </div>
             
-            <div class="payment-method">
-                <div class="method-header">
-                    <i class="fab fa-cc-gopay"></i>
-                    <h2>GOPAY</h2>
+            <!-- GOPAY Payment -->
+            <div class="payment-content">
+                <div class="payment-card">
+                    <div class="payment-method">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjNDBhNDU5IiBkPSJNMTY1LjkgMTA1LjVjLTQuNS00LjUtMTAuNi03LTE3LTdIMzJjLTE3LjcgMC0zMiAxNC4zLTMyIDMydjM1MmMwIDE3LjcgMTQuMyAzMiAzMiAzMmg0NDhjMTcuNyAwIDMyLTE0LjMgMzItMzJWMjQ4YzAtMTMuMy0xMC43LTI0LTI0LTI0SDI4OGMtMTMuMyAwLTI0LTEwLjctMjQtMjR2LTY3LjljMC02LjQtMi41LTEyLjUtNy0xN3ptMTM4IDExOC41YzAtNjUuOSA1MC41LTExOS45IDExMy45LTExOS45IDYzLjMgMCAxMTMuOSA1NCAxMTMuOSAxMTkuOXMtNTAuNSAxMTkuOS0xMTMuOSAxMTkuOWMtNjMuNCAwLTExMy45LTU0LTExMy45LTExOS45eiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0yMDcuOSAyMDEuNGMtNC4yLTUuMS0xMC45LTguMy0xOC44LTguMy0xMy4zIDAtMjMuOSAxMC43LTIzLjkgMjRzMTAuNiAyNCAyMy45IDI0YzcuOSAwIDE0LjYtMy4yIDE4LjgtOC4zaC0yMy4ydi0zMS40aDIzLjJ6bTQ3LjUgMzEuNGMwIDEzLjMgMTAuNiAyNCAyMy45IDI0czIzLjktMTAuNyAyMy45LTI0LTI0LTI0LTIzLjktMjRjLTEzLjIgMC0yMy45IDEwLjctMjMuOSAyNHptLTQ3LjUtNDcuM2MwLTEzLjMtMTAuNi0yNC0yMy45LTI0cy0yMy45IDEwLjctMjMuOSAyNCAxMC42IDI0IDIzLjkgMjRjNy45IDAgMTQuNi0zLjIgMTguOC04LjNoMjMuMnYtMTUuN2gtMjMuMnoiLz48L3N2Zz4=" alt="GOPAY" class="payment-icon">
+                        <div class="payment-details">
+                            <h3>Transfer GOPAY</h3>
+                            <p>No. Telepon: <strong>081413059313</strong></p>
+                            <p>Atas Nama: <strong>M AZHAR</strong></p>
+                        </div>
+                    </div>
+                    <div class="payment-info">
+                        <p>
+                            <span>081413059313</span>
+                            <button class="copy-btn" onclick="copyToClipboard('081413059313')">
+                                <i class="fas fa-copy"></i> Salin
+                            </button>
+                        </p>
+                    </div>
                 </div>
-                <div class="payment-details">
-                    <div class="detail-item">
-                        <label>Nomor GOPAY</label>
-                        <p id="gopay-number">081413059313</p>
-                        <button class="copy-btn" onclick="copyToClipboard('gopay-number')">Salin Nomor</button>
-                    </div>
-                    <div class="detail-item">
-                        <label>Atas Nama</label>
-                        <p>M AZHAR</p>
-                    </div>
+                <div class="instructions">
+                    <h4>Cara Pembayaran:</h4>
+                    <ol>
+                        <li>Buka aplikasi Gojek di ponsel Anda</li>
+                        <li>Pilih menu "Bayar" atau "GoPay"</li>
+                        <li>Pilih "Transfer"</li>
+                        <li>Masukkan nomor 081413059313</li>
+                        <li>Masukkan jumlah yang ingin ditransfer</li>
+                        <li>Konfirmasi pembayaran</li>
+                    </ol>
                 </div>
             </div>
             
-            <div class="payment-method">
-                <div class="method-header">
-                    <i class="fas fa-qrcode"></i>
-                    <h2>QRIS</h2>
-                </div>
-                <div class="qris-container">
-                    <div class="qris-placeholder">
-                        <i class="fas fa-qrcode"></i>
-                        <span>QR Code</span>
+            <!-- QRIS Payment -->
+            <div class="payment-content">
+                <div class="payment-card">
+                    <div class="payment-method">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMDAwMDAwIiBkPSJNMTI4IDEyOGgzMjB2MzIwSDEyOHoiLz48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMTYwIDE2MGg2NHY2NGgtNjR6bTAgOTZoNjR2NjRoLTY0em05Ni05Nmg2NHY2NGgtNjR6bTAgOTZoNjR2NjRoLTY0em05Ni05Nmg2NHY2NGgtNjR6bTAgOTZoNjR2NjRoLTY0em05Ni05Nmg2NHY2NGgtNjR6bTAgOTZoNjR2NjRoLTY0ek0xNjAgMjU2aDY0djY0aC02NHptOTYgMGg2NHY2NGgtNjR6bTk2IDBoNjR2NjRoLTY0em05NiAwaDY0djY0aC02NHoiLz48L3N2Zz4=" alt="QRIS" class="payment-icon">
+                        <div class="payment-details">
+                            <h3>QRIS (Quick Response Code Indonesian Standard)</h3>
+                            <p>Scan kode QR di bawah untuk pembayaran</p>
+                        </div>
                     </div>
-                    <p class="instruction">
-                        Untuk mendapatkan QRIS, silakan hubungi kami melalui 
-                        <a href="https://wa.me/6281413059313?text=Minta%20Qrisnya" target="_blank">WhatsApp</a>
-                    </p>
+                    <div class="qris-container">
+                        <img src="https://photos.app.goo.gl/fW6UwpvqEccawhdN6" alt="QR Code" class="qris-image" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://photos.app.goo.gl/fW6UwpvqEccawhdN6'">
+                        <p>Scan QR code di atas menggunakan aplikasi bank atau e-wallet yang mendukung QRIS</p>
+                    </div>
+                </div>
+                <div class="instructions">
+                    <h4>Cara Pembayaran:</h4>
+                    <ol>
+                        <li>Buka aplikasi bank atau e-wallet yang mendukung QRIS</li>
+                        <li>Pilih menu "Scan QR" atau "Bayar dengan QR"</li>
+                        <li>Arahkan kamera ke kode QR di atas</li>
+                        <li>Masukkan jumlah pembayaran</li>
+                        <li>Konfirmasi pembayaran</li>
+                    </ol>
                 </div>
             </div>
+            
+            <!-- Proof Transfer Link -->
+            <a href="https://wa.me/6281413059313?text=ini%20buktitfnya" class="proof-link" target="_blank">
+                <i class="fab fa-whatsapp"></i> Kirim Bukti Transfer di WhatsApp
+            </a>
         </div>
         
         <footer>
-            <p>© 2023 Payment Gateway. Semua transaksi akan diproses dengan aman.</p>
+            <p>© 2023 Payment Gateway | Semua transaksi aman dan terenkripsi</p>
         </footer>
     </div>
 
     <script>
-        function copyToClipboard(elementId) {
-            const element = document.getElementById(elementId);
-            const text = element.innerText;
+        function showPayment(index) {
+            // Hide all payment contents
+            const contents = document.querySelectorAll('.payment-content');
+            contents.forEach(content => content.classList.remove('active'));
             
+            // Show selected payment content
+            contents[index].classList.add('active');
+            
+            // Update active tab
+            const tabs = document.querySelectorAll('.tab-button');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            tabs[index].classList.add('active');
+        }
+        
+        function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
-                const originalText = event.target.innerText;
-                event.target.innerText = "Tersalin!";
-                
-                setTimeout(() => {
-                    event.target.innerText = originalText;
-                }, 2000);
+                alert('Nomor berhasil disalin: ' + text);
             }).catch(err => {
                 console.error('Gagal menyalin teks: ', err);
             });
         }
     </script>
 </body>
-</html> 
-
+</html>
